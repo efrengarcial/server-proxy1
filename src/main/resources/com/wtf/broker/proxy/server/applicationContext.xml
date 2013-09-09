@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="proxyService" class="com.wtf.broker.proxy.server.ProxyServiceImpl">
+    </bean>
+
+    <bean id="rmiServiceExporter" class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <property name="serviceName" value="proxyService"/>
+        <property name="service" ref="proxyService"/>
+        <property name="serviceInterface" value="com.wtf.broker.shared.ProxyService"/>
+        <!-- defaults to 1099 -->
+        <property name="registryPort" value="1099"/>
+    </bean>
+</beans>
